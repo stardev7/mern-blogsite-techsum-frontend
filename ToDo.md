@@ -5,7 +5,11 @@
 This site was developed by integrating various web technologies. This site implemented user management and posts management sent by users.
 
 Technologies Used:
-> MERNStack+Firebase+PostgreSQL+TailwindCSS.
+> MERNStack
+> Firebase
+> PostgreSQL
+> TailwindCSS
+> Redux
 
 ## To Do on this Project
 
