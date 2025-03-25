@@ -1,15 +1,8 @@
-export const GET_ERRORS = 'GET_ERRORS';
-export const CLEAR_ERRORS = 'CLEAR_ERRORS';
-export const SET_CURRENT_USER = 'SET_CURRENT_USER';
-export const GET_PROFILE = 'GET_PROFILE';
-export const PROFILE_LOADING = 'PROFILE_LOADING';
-export const PROFILE_NOT_FOUND = 'PROFILE_NOT_FOUND';
-export const CLEAR_CURRENT_PROFILE = 'CLEAR_CURRENT_PROFILE';
-export const GET_PROFILES = 'GET_PROFILES';
-export const POST_LOADING = 'POST_LOADING';
 
 export const SET_USER_EMAIL = 'SET_USER_EMAIL';
-export const ADD_POST = 'ADD_POST';
-export const DELETE_POST = 'ADD_POST';
-export const GET_POSTS = 'GET_POSTS';
-export const GET_POST = 'GET_POST';
+export const SET_USER_DATA = 'SET_USER_DATA';
+export const LOGOUT_USER = "LOGOUT_USER";
+export const ADD_BLOG = 'ADD_BLOG';
+export const DELETE_BLOG = 'ADD_BLOG';
+export const GET_BLOGS = 'GET_BLOGS';
+export const GET_BLOG = 'GET_BLOG';

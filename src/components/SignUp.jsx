@@ -1,24 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
 import isEmpty from "utils/is-empty";
 import { validatePassword } from "firebase/auth";
+import { registerUser } from "../redux/actions/authActions";
+import { useNavigate } from "react-router-dom";
+
+import { toast } from 'react-toastify';
+import date_to_string from "utils/date2string";
 
 const SignUp = () => {
     const email = useSelector(state => state.auth.email);
 
     const [username, setUsername] = useState("");
     const [gender, setGender] = useState(true);
-    const [birthday, setBirthday] = useState(new Date().getFullYear()+"-"+(new Date().getMonth() <= 8 ? "0" : "")+((new Date().getMonth()+1))+"-"+(new Date().getDate() <= 9 ? "0" : "")+new Date().getDate());
+    const [birthday, setBirthday] = useState(date_to_string(new Date()));
     const [job, setJob] = useState("");
     const [city, setCity] = useState("");
     const [error, setError] = useState({});
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (email === "" || email === undefined)
+            navigate("/auth")
+    }, [email])
 
     const handleSignup = async () => {
-        console.log({username, gender, birthday, job, city})
         let validation = {}
         if (username === "")
             validation.username = "Input user name"
@@ -31,10 +41,10 @@ const SignUp = () => {
         if (city === "")
             validation.city = "Input your address"
         setError(validation)
-        if(isEmpty(validation) === false)
-            dispatch()
+        if (isEmpty(validation) === false)
+            return
         try {
-            console.log("OK")
+            dispatch(registerUser({ email, name: username, gender, birthday, job, city }, toast, navigate));
         } catch (err) {
 
         }
@@ -49,7 +59,8 @@ const SignUp = () => {
                 <input
                     type="text"
                     value={email}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 mb-4"
+                    readOnly={true}
+                    className="w-full p-3 border bg-gray-200 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 mb-4"
                 />
                 <input
                     type="text"
@@ -107,13 +118,14 @@ const SignUp = () => {
                         {error.city}
                     </p>}
                 <button
-                    className="w-full p-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition duration-300"
+                    className="w-full p-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-700 transition duration-300"
                     onClick={handleSignup}
                 >
                     {"Submit"}
                 </button>
                 <p
                     className="text-center text-sm text-gray-600 mt-4 cursor-pointer hover:underline"
+                    onClick={() => navigate("/auth")}
                 >
                     {"Go back to login"}
                 </p>
