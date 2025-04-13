@@ -39,4 +39,4 @@ You must prepare Firebase accession key on "/blogsite-back/firebase-key.json".
 
 ## Copyright and license
 
-⭐️ Copyright 2025 Lev Makarov 
+⭐️ Copyright 2025 Stardev7
